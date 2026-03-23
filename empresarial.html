@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTI - Soluções Empresariais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="empresarial.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E8B57">
+</head>
+<body>
+    <header>
+        <!-- Barra de acessibilidade -->
+        <div class="accessibility-bar">
+            <button class="accessibility-btn" id="dark-mode-btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            
+            <div class="font-size-controls">
+                <span>Aumentar fonte:</span>
+                <button class="font-size-btn" id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button class="font-size-btn" id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button class="font-size-btn" id="font-reset" aria-label="Resetar tamanho da fonte">A</button>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo principal.png" alt="GTI" class="logo-light">
+                <img src="images/logo logo-light.png" alt="GTI" class="logo-dark">
+            </a>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html#sobre">Sobre Nós</a></li>
+                    <li><a href="index.html#missao">Missão</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Esta div será atualizada dinamicamente -->
+            <div class="user-actions">
+                <!-- Conteúdo será inserido pelo JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Botão Voltar -->
+    <div class="container">
+        <button class="btn-voltar" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+    </div>
+
+    <div class="container">
+        <section class="section">
+            <div class="form-container">
+                <h1 class="section-title">Soluções Empresariais Personalizadas</h1>
+                <p class="section-subtitle">Preencha o formulário abaixo e nossa equipe entrará em contato para criar um plano sob medida para sua empresa.</p>
+                
+                <form id="formEmpresarial">
+                    <!-- Informações da Empresa -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-building"></i> Dados da Empresa</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="empresa">Nome da Empresa*</label>
+                                <input type="text" id="empresa" name="empresa" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cnpj">CNPJ*</label>
+                                <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" minlength="18" maxlength="18" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="segmento">Segmento de Atuação*</label>
+                                <select id="segmento" name="segmento" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="comercio">Comércio</option>
+                                    <option value="industria">Indústria</option>
+                                    <option value="servicos">Serviços</option>
+                                    <option value="tecnologia">Tecnologia</option>
+                                    <option value="educacao">Educação</option>
+                                    <option value="saude">Saúde</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="funcionarios">Número de Funcionários*</label>
+                                <select id="funcionarios" name="funcionarios" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="1-10">1-10</option>
+                                    <option value="11-50">11-50</option>
+                                    <option value="51-200">51-200</option>
+                                    <option value="201-500">201-500</option>
+                                    <option value="501+">501+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Informações do Contato -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-user-tie"></i> Responsável pelo Contato</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo*</label>
+                                <input type="text" id="nome" name="nome" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cargo">Cargo*</label>
+                                <input type="text" id="cargo" name="cargo" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">E-mail Corporativo*</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefone">Telefone*</label>
+                                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" minlength="14" maxlength="15" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Necessidades da Empresa -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-clipboard-list"></i> Suas Necessidades</h2>
+                        <div class="form-group full-width">
+                            <label for="residuos">Quais tipos de resíduos sua empresa gera?*</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="residuos" value="organico"> Orgânicos</label>
+                                <label><input type="checkbox" name="residuos" value="papel"> Papel/Papelão</label>
+                                <label><input type="checkbox" name="residuos" value="plastico"> Plástico</label>
+                                <label><input type="checkbox" name="residuos" value="vidro"> Vidro</label>
+                                <label><input type="checkbox" name="residuos" value="metal"> Metal</label>
+                                <label><input type="checkbox" name="residuos" value="eletronicos"> Eletrônicos</label>
+                                <label><input type="checkbox" name="residuos" value="perigosos"> Perigosos</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="volume">Volume Estimado (kg/semana)*</label>
+                                <select id="volume" name="volume" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="0-50">0-50 kg</option>
+                                    <option value="51-100">51-100 kg</option>
+                                    <option value="101-500">101-500 kg</option>
+                                    <option value="501-1000">501-1000 kg</option>
+                                    <option value="1000+">Mais de 1000 kg</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="frequencia">Frequência Desejada de Coleta*</label>
+                                <select id="frequencia" name="frequencia" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="diaria">Diária</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="quinzenal">Quinzenal</option>
+                                    <option value="mensal">Mensal</option>
+                                    <option value="sob-demanda">Sob demanda</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="necessidades">Descreva suas necessidades específicas*</label>
+                            <textarea id="necessidades" name="necessidades" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="objetivos">Quais são seus objetivos com a gestão de resíduos?*</label>
+                            <textarea id="objetivos" name="objetivos" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Termos e Envio -->
+                    <div class="form-section">
+                        <div class="form-group full-width">
+                            <label>
+                                <input class="checkbox" type="checkbox" name="termos" required>
+                                Li e aceito a <a href="#" target="_blank">Política de Privacidade</a> e autorizo o contato*
+                            </label>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>
+                                <input class="checkbox" type="checkbox" name="newsletter" checked>
+                                Desejo receber informações sobre sustentabilidade e novidades da GTI
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Botão de Chat -->
+    <div class="chat-button">
+        <i class="fas fa-comment-dots" href="chatbot.html"></i>
+    </div>
+    <a href="chatbot.html" class="chat-button">🤖</a>
+
+   <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="servicos.html">Serviços</a>
+                    <a href="index.html#sobre">Sobre Nós</a>
+                    <a href="index.html#missao">Missão</a>
+                    <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a> 
+                    <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+                </div>
+                
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> gettrashintelligence@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href= "https://www.facebook.com/?locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/watch?v=GPAYhCiBNAo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <p class="copyright">&copy; 2025 Get Trash Intelligence - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Controle do dark mode
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        darkModeBtn.addEventListener('click', toggleDarkMode);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const footer = document.querySelector('footer');
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            const footerIcons = document.querySelectorAll('.footer-content i, .footer-content .fab');
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                localStorage.setItem('darkMode', 'ativado');
+                // Footer: texto, links e ícones brancos
+                if (footer) footer.style.color = '#FFFFFF';
+                footerLinks.forEach(link => link.style.color = '#FFFFFF');
+                footerIcons.forEach(icon => icon.style.color = '#FFFFFF');
+            } else {
+                darkModeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                localStorage.removeItem('darkMode');
+                // Footer: volta ao padrão
+                if (footer) footer.style.color = '';
+                footerLinks.forEach(link => link.style.color = '');
+                footerIcons.forEach(icon => icon.style.color = '');
+            }
+        }
+
+        // Verifica se há dark mode ativo no carregamento
+        if (localStorage.getItem('darkMode') === 'ativado') {
+            document.body.classList.add('dark-mode');
+            darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            // Footer: texto, links e ícones brancos ao recarregar
+            const footer = document.querySelector('footer');
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            const footerIcons = document.querySelectorAll('.footer-content i, .footer-content .fab');
+            if (footer) footer.style.color = '#FFFFFF';
+            footerLinks.forEach(link => link.style.color = '#FFFFFF');
+            footerIcons.forEach(icon => icon.style.color = '#FFFFFF');
+        }
+
+        // Controle de tamanho da fonte
+        const fontIncrease = document.getElementById('font-increase');
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontReset = document.getElementById('font-reset');
+        
+        // Tamanho base da fonte (16px)
+        let fontSize = 16;
+
+        fontIncrease.addEventListener('click', function() {
+            if (fontSize < 24) {
+                fontSize += 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontDecrease.addEventListener('click', function() {
+            if (fontSize > 12) {
+                fontSize -= 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontReset.addEventListener('click', function() {
+            fontSize = 16;
+            document.documentElement.style.fontSize = fontSize + 'px';
+            localStorage.setItem('fontSize', fontSize);
+        });
+
+        // Verifica se há tamanho de fonte salvo
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            fontSize = parseInt(savedFontSize);
+            document.documentElement.style.fontSize = fontSize + 'px';
+        }
+
+        // Formatação do CNPJ
+        document.getElementById('cnpj').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 12) {
+                value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+            } else if (value.length > 8) {
+                value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})$/, '$1.$2.$3/$4');
+            } else if (value.length > 5) {
+                value = value.replace(/^(\d{2})(\d{3})(\d{3})$/, '$1.$2.$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{3})$/, '$1.$2');
+            }
+            
+            e.target.value = value;
+        });
+
+        // Formatação do telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 10) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{4})$/, '($1) $2');
+            } else if (value.length > 0) {
+                value = value.replace(/^(\d{2})$/, '($1)');
+            }
+            
+            e.target.value = value;
+        });
+
+        // Função para mostrar toast notifications (padrão cadastro.html)
+        function showToast(message, type = 'success', duration = 3000) {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            let icon = '';
+            switch(type) {
+                case 'success': icon = '<i class="fas fa-check-circle"></i>'; break;
+                case 'error': icon = '<i class="fas fa-exclamation-circle"></i>'; break;
+                case 'warning': icon = '<i class="fas fa-exclamation-triangle"></i>'; break;
+                default: icon = '<i class="fas fa-info-circle"></i>';
+            }
+            toast.innerHTML = `${icon}${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+        // Toast ao enviar solicitação
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('formEmpresarial');
+            if(form) {
+                form.addEventListener('submit', function(e) {
+                    if(form.checkValidity()) {
+                        e.preventDefault();
+                        showToast('Solicitação enviada com sucesso!', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'servicos.html';
+                        }, 1500);
+                    }
+                }, true);
+            }
+        });
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>

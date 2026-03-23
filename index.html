@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTI - Soluções Sustentáveis em Reciclagem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="index.css"  >
+    <meta name="theme-color" content="#2E8B57">
+
+    
+    
+</head>
+<body>
+    <header>
+        <!-- Barra de acessibilidade -->
+        <div class="accessibility-bar">
+            <button class="accessibility-btn" id="dark-mode-btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            
+            <div class="font-size-controls">
+                <span>Aumentar fonte:</span>
+                <button class="font-size-btn" id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button class="font-size-btn" id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button class="font-size-btn" id="font-reset" aria-label="Resetar tamanho da fonte">A</button>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo principal.png" alt="GTI" class="logo-light">
+                <img src="images/logo logo-light.png" alt="GTI" class="logo-dark">
+            </a>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#missao">Missão</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Esta div será atualizada dinamicamente -->
+            <div class="user-actions">
+                <!-- Conteúdo será inserido pelo JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="slogan animate__animated animate__fadeInDown">Conectando você a um futuro sustentável</h1>
+                <p class="animate__animated animate__fadeInUp"><span class="highlight-bg">Soluções inteligentes para gestão de resíduos e reciclagem</span></p>
+                <a href="#servicos" class="btn-hero animate__animated animate__fadeIn" id="btn-servicos">Conheça nossos serviços</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="section" id="sobre">
+                <h2 class="section-title">Conscientização Ambiental</h2>
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <i class="fas fa-recycle service-icon floating" aria-hidden="true"></i>
+                        <h3>Reciclagem Inteligente</h3>
+                        <p>A reciclagem reduz a extração de recursos naturais, economiza energia e diminui a quantidade de lixo em aterros sanitários. Cada material reciclado representa menos impacto no meio ambiente.</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-leaf service-icon floating delay-1" aria-hidden="true"></i>
+                        <h3>Impacto Ambiental</h3>
+                        <p>A reciclagem de uma tonelada de papel pode preservar até 22 árvores, gerar uma economia de aproximadamente 70% no consumo de energia elétrica e reduzir em até 74% a emissão de poluentes no ar, quando comparada à produção de papel a partir de matéria-prima virgem.</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-globe service-icon floating delay-2" aria-hidden="true"></i>
+                        <h3>Benefícios Sociais</h3>
+                        <p>A reciclagem inteligente gera empregos, promove inclusão social, fortalece a economia local e contribui para a construção de uma sociedade mais sustentável, limpa e consciente, dentro dos princípios da economia circular.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="awareness">
+                    <h2 class="section-title">Por que fazer coleta seletiva?</h2>
+                    <div class="info-box">
+                        <p>
+                            A coleta seletiva é o primeiro passo para uma gestão adequada dos resíduos sólidos. Ela permite a reciclagem de materiais que seriam descartados, reduzindo o impacto ambiental, economizando recursos naturais e gerando emprego e renda para catadores e cooperativas de reciclagem. Além disso, contribui para a educação ambiental da sociedade.
+                        </p>
+                        <div class="cta-button" style="margin-top: 2rem;">
+                            <a href="cadastro.html" class="btn btn-primary">Faça parte dessa mudança</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="awareness">
+                    <h2 class="section-title">Quem somos?</h2>
+                    <div class="info-box">
+                        <p>
+                            O GTI (Get Trash Intelligence) é uma plataforma inovadora que conecta indivíduos que precisam descartar resíduos de maneira adequada com profissionais especializados em coleta seletiva. Nosso propósito é simplificar e otimizar o processo de reciclagem, tornando-o mais acessível, prático e eficiente para todos. Combinamos tecnologia e sustentabilidade para criar soluções que beneficiam tanto o meio ambiente quanto a sociedade.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Missão, Visão e Valores -->
+            <section class="section" id="missao">
+                <h2 class="section-title">Nossa Essência</h2>
+                <div class="mvw-container">
+                    <div class="mvw-box">
+                        <i class="fas fa-bullseye mvw-icon floating"></i>
+                        <h3>Missão</h3>
+                        <p>Facilitar e promover a gestão inteligente de resíduos, conectando pessoas e empresas a soluções sustentáveis de reciclagem, contribuindo para a preservação ambiental e o desenvolvimento social.</p>
+                    </div>
+                    <div class="mvw-box">
+                        <i class="fas fa-eye mvw-icon floating delay-1"></i>
+                        <h3>Visão</h3>
+                        <p>Ser referência nacional em soluções tecnológicas para gestão de resíduos, transformando a maneira como a sociedade lida com o lixo e promovendo a economia circular.</p>
+                    </div>
+                    <div class="mvw-box">
+                        <i class="fas fa-heart mvw-icon floating delay-2"></i>
+                        <h3>Valores</h3>
+                        <p>Sustentabilidade, Inovação, Transparência, Responsabilidade Social e Excelência no atendimento são os pilares que guiam nossas ações e decisões.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOSSOS SERVIÇOS -->
+            <section class="section" id="servicos">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="services">
+                    <!-- Metal -->
+                    <div class="service-card" onclick="location.href='cadastro.html'" tabindex="0" role="button" aria-label="Serviço de reciclagem de metal">
+                        <img src="images/Caçamba GTI Amarelo.png" alt="Caçamba para reciclagem de metal" class="floating">
+                        <h3>Metal</h3>
+                        <p>Reciclagem de latas, arames e objetos metálicos com tecnologia de ponta para máxima eficiência.</p>
+                        <a href="cadastro.html" class="btn btn-secondary">Agendar Coleta</a>
+                    </div>
+
+                    <!-- Vidro -->
+                    <div class="service-card" onclick="location.href='cadastro.html'" tabindex="0" role="button" aria-label="Serviço de reciclagem de vidro">
+                        <img src="images/Caçamba GTI Verde.png" alt="Caçamba para reciclagem de vidro" class="floating delay-1">         
+                        <h3>Vidro</h3>
+                        <p>Garrafas, frascos e vidros planos coletados e processados com segurança e responsabilidade.</p>
+                        <a href="cadastro.html" class="btn btn-secondary">Agendar Coleta</a>
+                    </div>
+
+                    <!-- Plástico -->
+                    <div class="service-card" onclick="location.href='cadastro.html'" tabindex="0" role="button" aria-label="Serviço de reciclagem de plástico">
+                        <img src="images/Caçamba GTI Vermelho.png" alt="Caçamba para reciclagem de plástico" class="floating delay-2">
+                        <h3>Plástico</h3>
+                        <p>Embalagens, sacolas e utensílios plásticos transformados em novos produtos de qualidade.</p>
+                        <a href="cadastro.html" class="btn btn-secondary">Agendar Coleta</a>
+                    </div>
+
+                    <!-- Papel -->
+                    <div class="service-card" onclick="location.href='cadastro.html'" tabindex="0" role="button" aria-label="Serviço de reciclagem de papel">
+                        <img src="images/Caçamba GTI Azul.png" alt="Caçamba para reciclagem de papel" class="floating delay-1">
+                        <h3>Papel</h3>
+                        <p>Jornais, revistas, caixas de papelão reciclados com processos ecoeficientes.</p>
+                        <a href="cadastro.html" class="btn btn-secondary">Agendar Coleta</a>
+                    </div>
+
+                    <!-- Botão Mais Caçambas centralizado -->
+                    <a href="cadastro.html" class="mais-cacambas-btn">
+                        Mais caçambas <span class="fas fa-arrow-right"></span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Botão de Chat -->
+        <div class="chat-button">
+            <i class="fas fa-comment-dots" href="chatbot.html"></i>
+        </div>
+        <a href="chatbot.html" class="chat-button">🤖</a>
+
+        <footer id="contato">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#servicos">Serviços</a>
+                        <a href="#sobre">Sobre Nós</a>
+                        <a href="#missao">Missão</a>
+                        <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a> 
+                        <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> gettrashintelligence@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href= "https://www.facebook.com/?locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/watch?v=GPAYhCiBNAo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    
+                    <p class="copyright">&copy; 2025 Get Trash Intelligence - Todos os direitos reservados</p>
+                </div>
+            </div>
+        </footer>
+
+    <script>
+        // Controle do dark mode
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        darkModeBtn.addEventListener('click', toggleDarkMode);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Atualiza o ícone do botão
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                localStorage.setItem('darkMode', 'ativado');
+            } else {
+                darkModeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                localStorage.removeItem('darkMode');
+            }
+        }
+
+        // Verifica se há dark mode ativo no carregamento
+        if (localStorage.getItem('darkMode') === 'ativado') {
+            document.body.classList.add('dark-mode');
+            darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+        }
+
+        // Controle de tamanho da fonte
+        const fontIncrease = document.getElementById('font-increase');
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontReset = document.getElementById('font-reset');
+        
+        // Tamanho base da fonte (16px)
+        let fontSize = 16;
+
+        fontIncrease.addEventListener('click', function() {
+            if (fontSize < 24) {
+                fontSize += 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontDecrease.addEventListener('click', function() {
+            if (fontSize > 12) {
+                fontSize -= 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontReset.addEventListener('click', function() {
+            fontSize = 16;
+            document.documentElement.style.fontSize = fontSize + 'px';
+            localStorage.setItem('fontSize', fontSize);
+        });
+
+        // Verifica se há tamanho de fonte salvo
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            fontSize = parseInt(savedFontSize);
+            document.documentElement.style.fontSize = fontSize + 'px';
+        }
+
+        // Smooth scrolling para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efeito de aparecimento suave ao rolar
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.info-box, .service-card, .mvw-box');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Configura elementos para animação
+        document.querySelectorAll('.info-box, .service-card, .mvw-box').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Adiciona evento de scroll
+        window.addEventListener('scroll', animateOnScroll);
+        // Executa uma vez ao carregar
+        window.addEventListener('load', animateOnScroll);
+
+        // Verifica autenticação ao carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+            if (usuarioLogado) {
+                console.log('Usuário logado:', usuarioLogado.nome);
+                
+                // Esconde formulários de login se existirem
+                const loginForm = document.getElementById('login-form');
+                if (loginForm) loginForm.style.display = 'none';
+            }
+        });
+
+        // Corrige links para abrir em nova aba
+        const btnServicos = document.getElementById('btn-servicos');
+        if (btnServicos) btnServicos.setAttribute('target', '_blank');
+        document.querySelectorAll('.service-card .btn').forEach(btn => btn.setAttribute('target', '_blank'));
+
+        // Botão do jogo: só permite acesso se logado
+        const btnJogo = document.getElementById('btn-jogo');
+        if (btnJogo) {
+            btnJogo.addEventListener('click', function() {
+                const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+                if (usuarioLogado) {
+                    window.location.href = 'jogo.html';
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+
+        // Corrigir comportamento dos botões 'Agendar Coleta'
+        document.querySelectorAll('.service-card .btn').forEach(btn => {
+            btn.removeAttribute('target'); // Remove target para garantir navegação na mesma aba
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+                if (usuarioLogado) {
+                    window.location.href = 'servicos.html';
+                } else {
+                    window.location.href = 'cadastro.html';
+                }
+            });
+        });
+    </script>
+    <script src="auth.js"></script>
+    <script>
+        // Garante atualização dos links após todo o conteúdo ser carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof atualizarLinks === 'function') {
+                atualizarLinks();
+            }
+        });
+    </script>
+</body>
+</html>

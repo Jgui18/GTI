@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot de Suporte - Get Trash Intelligence</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E8B57">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2E8B57;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 60px;
+            color: #3CB371;
+            margin: 20px 0;
+        }
+        
+        .coming-soon {
+            background: #FFD700;
+            color: #333;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .benefits {
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .benefits li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .benefits li:before {
+            content: "✓";
+            color: #2E8B57;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .btn {
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            background-color: #3CB371;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin: 20px 0 0 20px;
+            padding: 10px 24px;
+            border-radius: 25px;
+            background: #fff;
+            color: #2E8B57;
+            border: 1px solid #2E8B57;
+            font-weight: 500;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-voltar:hover {
+            background: #2E8B57;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="btn-voltar" id="btnVoltarChatbot"><i class="fas fa-arrow-left"></i> Voltar</a>
+        <div class="feature-icon">🤖</div>
+        <h1>Chatbot de Suporte</h1>
+        <div class="coming-soon">EM BREVE</div>
+        
+        <p>Estamos trabalhando em um <strong>assistente virtual inteligente</strong> para te ajudar com dúvidas sobre coleta seletiva, reciclagem e nossos serviços!</p>
+        
+        <div class="benefits">
+            <h3>O que você poderá fazer com ele:</h3>
+            <ul>
+                <li>Tirar dúvidas instantâneas sobre materiais recicláveis.</li>
+                <li>Agendar coletas de resíduos.</li>
+                <li>Receber dicas personalizadas para reduzir lixo.</li>
+                <li>Relatar problemas ou solicitar suporte humano.</li>
+            </ul>
+        </div>
+        
+        <p>Quer ser avisado quando o chatbot estiver disponível? Deixe seu e-mail abaixo!</p>
+        
+        <form id="notify-form" style="margin: 20px 0;">
+            <input type="email" placeholder="Seu melhor e-mail" required 
+                   style="padding: 10px; width: 300px; max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+            <button type="submit" class="btn">Me avise!</button>
+        </form>
+        
+        <a class="btn" onclick="window.history.back()">Voltar ao site</a>
+    </div>
+
+    <script>
+        // Simulação de cadastro para aviso
+        document.getElementById('notify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Obrigado! Vamos te avisar quando o chatbot estiver pronto no e-mail:\n${email}`);
+            this.reset();
+        });
+
+        document.getElementById('btnVoltarChatbot').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

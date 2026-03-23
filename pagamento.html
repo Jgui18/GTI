@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTI - Pagamento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="pagamento.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E8B57">
+</head>
+<body>
+    <header>
+        <!-- Barra de acessibilidade -->
+        <div class="accessibility-bar">
+            <button class="accessibility-btn" id="dark-mode-btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            
+            <div class="font-size-controls">
+                <span>Aumentar fonte:</span>
+                <button class="font-size-btn" id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button class="font-size-btn" id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button class="font-size-btn" id="font-reset" aria-label="Resetar tamanho da fonte">A</button>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo principal.png" alt="GTI" class="logo-light">
+                <img src="images/logo logo-light.png" alt="GTI" class="logo-dark">
+            </a>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html#sobre">Sobre Nós</a></li>
+                    <li><a href="index.html#missao">Missão</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Esta div será atualizada dinamicamente -->
+            <div class="user-actions">
+                <!-- Conteúdo será inserido pelo JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Botão Voltar -->
+    <div class="container">
+        <button class="btn-voltar" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+    </div>
+
+    <div class="container">
+        <section class="section">
+            <div class="payment-container">
+                <h1 class="section-title">Finalizar Assinatura</h1>
+                <p class="section-subtitle">Preencha os dados de pagamento para ativar seu plano</p>
+                
+                <div class="payment-content">
+                    <!-- Resumo do Plano -->
+                    <div class="plan-summary">
+                        <div class="summary-header">
+                            <h2 id="plan-name">Plano Premium</h2>
+                            <div class="plan-price" id="plan-price">R$199<span>/mês</span></div>
+                        </div>
+                        
+                        <ul class="plan-features" id="plan-features">
+                            <li><i class="fas fa-check"></i> 2 Coletas semanais</li>
+                            <li><i class="fas fa-check"></i> 4 Tipos de resíduos</li>
+                            <li><i class="fas fa-check"></i> Relatório detalhado</li>
+                            <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                            <li><i class="fas fa-check"></i> Certificado ecológico</li>
+                        </ul>
+                        
+                        <div class="plan-benefits">
+                            <h3><i class="fas fa-star"></i> Benefícios:</h3>
+                            <ul>
+                                <li>Coleta programada conforme sua necessidade</li>
+                                <li>Relatórios mensais de impacto ambiental</li>
+                                <li>Suporte especializado 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulário de Pagamento -->
+                    <div class="payment-form">
+                        <form id="paymentForm">
+                            <div class="payment-methods">
+                                <h2><i class="fas fa-credit-card"></i> Método de Pagamento</h2>
+                                
+                                <div class="method-tabs">
+                                    <button type="button" class="method-tab active" data-method="credit">
+                                        <i class="fas fa-credit-card"></i> Cartão de Crédito
+                                    </button>
+                                    <button type="button" class="method-tab" data-method="pix">
+                                        <i class="fas fa-qrcode"></i> PIX
+                                    </button>
+                                    <button type="button" class="method-tab" data-method="boleto">
+                                        <i class="fas fa-barcode"></i> Boleto
+                                    </button>
+                                </div>
+                                
+                                <!-- Cartão de Crédito -->
+                                <div class="method-content active" id="credit-method">
+                                    <div class="form-group">
+                                        <label for="card-number">Número do Cartão*</label>
+                                        <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" minlength="19" maxlength="19" required>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card-name">Nome no Cartão*</label>
+                                            <input type="text" id="card-name" name="card-name" required>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="card-expiry">Validade*</label>
+                                            <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AA">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="card-cvv">CVV*</label>
+                                            <input type="text" id="card-cvv" name="card-cvv" placeholder="000" minlength="3" maxlength="3" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="card-installments">Parcelamento*</label>
+                                        <select id="card-installments" name="card-installments" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="1">1x de R$199,00 (sem juros)</option>
+                                            <option value="2">2x de R$99,50 (sem juros)</option>
+                                            <option value="3">3x de R$66,33 (sem juros)</option>
+                                            <option value="4">4x de R$49,75 (sem juros)</option>
+                                            <option value="5">5x de R$39,80 (sem juros)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- PIX -->
+                                <div class="method-content" id="pix-method">
+                                    <div class="pix-info">
+                                        <p>O QR Code será gerado após a confirmação do pedido.</p>
+                                        <div class="pix-qr-placeholder">
+                                            <i class="fas fa-qrcode"></i>
+                                            <span>QR Code PIX</span>
+                                        </div>
+                                        <p class="small">Pague com PIX e tenha aprovação imediata</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Boleto -->
+                                <div class="method-content" id="boleto-method">
+                                    <div class="boleto-info">
+                                        <p>O boleto será gerado após a confirmação do pedido e enviado para seu e-mail.</p>
+                                        <div class="boleto-placeholder">
+                                            <i class="fas fa-barcode"></i>
+                                            <span>Boleto Bancário</span>
+                                        </div>
+                                        <p class="small">O prazo para compensação é de até 2 dias úteis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Dados Pessoais -->
+                            <div class="personal-data">
+                                <h2><i class="fas fa-user"></i> Dados Pessoais</h2>
+                                
+                                <div class="form-group">
+                                    <label for="full-name">Nome Completo*</label>
+                                    <input type="text" id="full-name" name="full-name" required>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="cpf">CPF*</label>
+                                        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" minlength="14" maxlength="14" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="birthdate">Data de Nascimento*</label>
+                                        <input type="date" id="birthdate" name="birthdate" maxlength="4" minlength="4" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">E-mail*</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Telefone*</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" maxlength="15" minlength="15" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Termos e Condições -->
+                            <div class="form-group terms">
+                                <label>
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    Li e aceito os <a href="#" target="_blank">Termos de Serviço</a> e <a href="#" target="_blank">Política de Privacidade</a>*
+                                </label>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-large">
+                                    <i class="fas fa-lock"></i> Finalizar Pagamento
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Botão de Chat -->
+    <div class="chat-button">
+        <i class="fas fa-comment-dots" href="chatbot.html"></i>
+    </div>
+    <a href="chatbot.html" class="chat-button">🤖</a>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="servicos.html">Serviços</a>
+                    <a href="index.html#sobre">Sobre Nós</a>
+                    <a href="index.html#missao">Missão</a>
+                    <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>
+                    <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+                </div>
+                
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> gettrashintelligence@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href= "https://www.facebook.com/?locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/watch?v=GPAYhCiBNAo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <p class="copyright">&copy; 2025 Get Trash Intelligence - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Controle do dark mode
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        darkModeBtn.addEventListener('click', toggleDarkMode);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Atualiza o ícone do botão
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                localStorage.setItem('darkMode', 'ativado');
+            } else {
+                darkModeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                localStorage.removeItem('darkMode');
+            }
+        }
+
+        // Verifica se há dark mode ativo no carregamento
+        if (localStorage.getItem('darkMode') === 'ativado') {
+            document.body.classList.add('dark-mode');
+            darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+        }
+
+        // Controle de tamanho da fonte
+        const fontIncrease = document.getElementById('font-increase');
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontReset = document.getElementById('font-reset');
+        
+        // Tamanho base da fonte (16px)
+        let fontSize = 16;
+
+        fontIncrease.addEventListener('click', function() {
+            if (fontSize < 24) {
+                fontSize += 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontDecrease.addEventListener('click', function() {
+            if (fontSize > 12) {
+                fontSize -= 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontReset.addEventListener('click', function() {
+            fontSize = 16;
+            document.documentElement.style.fontSize = fontSize + 'px';
+            localStorage.setItem('fontSize', fontSize);
+        });
+
+        // Verifica se há tamanho de fonte salvo
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            fontSize = parseInt(savedFontSize);
+            document.documentElement.style.fontSize = fontSize + 'px';
+        }
+
+        // Alternar entre métodos de pagamento
+        const methodTabs = document.querySelectorAll('.method-tab');
+        // Função que atualiza quais campos são obrigatórios conforme o método selecionado
+        function updateRequiredFields() {
+            const activeMethod = document.querySelector('.method-tab.active')?.getAttribute('data-method') || 'credit';
+            const cardFields = [
+                document.getElementById('card-number'),
+                document.getElementById('card-name'),
+                document.getElementById('card-expiry'),
+                document.getElementById('card-cvv'),
+                document.getElementById('card-installments')
+            ];
+
+            if (activeMethod === 'credit') {
+                cardFields.forEach(f => { if (f) f.setAttribute('required', 'required'); });
+            } else {
+                cardFields.forEach(f => { if (f) f.removeAttribute('required'); });
+            }
+        }
+
+        methodTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove classe active de todas as tabs e contents
+                document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.method-content').forEach(c => c.classList.remove('active'));
+
+                // Adiciona classe active na tab clicada
+                this.classList.add('active');
+
+                // Mostra o content correspondente
+                const method = this.getAttribute('data-method');
+                document.getElementById(`${method}-method`).classList.add('active');
+
+                // Atualiza required dos campos conforme o método
+                updateRequiredFields();
+            });
+        });
+
+        // Chama na inicialização para definir required corretamente
+        updateRequiredFields();
+
+        // Formatação do CPF
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 9) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})$/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/^(\d{3})(\d{3})$/, '$1.$2');
+            }
+            
+            e.target.value = value;
+        });
+
+        // Formatação do número do cartão
+        document.getElementById('card-number').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+            e.target.value = value.substring(0, 19);
+        });
+
+        // Formatação da validade
+        document.getElementById('card-expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{2})$/, '$1/$2');
+            }
+            e.target.value = value.substring(0, 5);
+        });
+
+        // Formatação do CVV
+        document.getElementById('card-cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
+        });
+
+        // Formatação do telefone
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 10) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{4})$/, '($1) $2');
+            } else if (value.length > 0) {
+                value = value.replace(/^(\d{2})$/, '($1)');
+            }
+            
+            e.target.value = value;
+        });
+
+        // Carregar dados do plano da URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const plan = urlParams.get('plano');
+            
+            if (plan === 'basico') {
+                document.getElementById('plan-name').textContent = 'Plano Básico';
+                document.getElementById('plan-price').innerHTML = 'R$99<span>/mês</span>';
+                
+                const features = [
+                    '<i class="fas fa-check"></i> 1 Coleta semanal',
+                    '<i class="fas fa-check"></i> 2 Tipos de resíduos',
+                    '<i class="fas fa-check"></i> Relatório mensal',
+                    '<i class="fas fa-check"></i> Suporte básico',
+                    '<i class="fas fa-times"></i> Certificado ecológico'
+                ];
+                
+                document.getElementById('plan-features').innerHTML = features.map(f => `<li>${f}</li>`).join('');
+                
+                // Atualizar opções de parcelamento
+                const installments = document.getElementById('card-installments');
+                installments.innerHTML = `
+                    <option value="">Selecione...</option>
+                    <option value="1">1x de R$99,00 (sem juros)</option>
+                    <option value="2">2x de R$49,50 (sem juros)</option>
+                    <option value="3">3x de R$33,00 (sem juros)</option>
+                    <option value="4">4x de R$24,75 (sem juros)</option>
+                    <option value="5">5x de R$19,80 (sem juros)</option>
+                `;
+            }
+        });
+
+        // Função para mostrar toast notifications (padrão cadastro.html)
+        function showToast(message, type = 'success', duration = 3000) {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            let icon = '';
+            switch(type) {
+                case 'success': icon = '<i class="fas fa-check-circle"></i>'; break;
+                case 'error': icon = '<i class="fas fa-exclamation-circle"></i>'; break;
+                case 'warning': icon = '<i class="fas fa-exclamation-triangle"></i>'; break;
+                default: icon = '<i class="fas fa-info-circle"></i>';
+            }
+            toast.innerHTML = `${icon}${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+        // NOTE: removed earlier immediate-submit handler so server-side processing can run
+        // The actual submit handling below performs the fetch to `processar_pagamento.php`.
+
+        // Atualizar o evento de submit do formulário
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('paymentForm');
+            if(form) {
+                    form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    // Atualiza required antes de validar
+                    updateRequiredFields();
+
+                    if(!form.checkValidity()) {
+                        form.reportValidity();
+                        return;
+                    }
+                    
+                    // Obter plano da URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const plano = urlParams.get('plano') || 'premium';
+                    
+                    // Obter método de pagamento selecionado
+                    const metodoPagamento = document.querySelector('.method-tab.active')?.getAttribute('data-method') || 'credit';
+                    
+                    // Coletar dados do formulário
+                    const formData = {
+                        plano: plano,
+                        metodo_pagamento: metodoPagamento,
+                        'full-name': document.getElementById('full-name').value,
+                        cpf: document.getElementById('cpf').value,
+                        birthdate: document.getElementById('birthdate').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        terms: document.getElementById('terms')?.checked || false
+                    };
+                    
+                    // Adicionar dados do cartão se método for cartão
+                    if (metodoPagamento === 'credit') {
+                        formData['card-number'] = document.getElementById('card-number').value;
+                        formData['card-name'] = document.getElementById('card-name').value;
+                        formData['card-expiry'] = document.getElementById('card-expiry').value;
+                        formData['card-cvv'] = document.getElementById('card-cvv').value;
+                        formData['card-installments'] = document.getElementById('card-installments').value;
+                    }
+                    
+                    try {
+                        const response = await fetch('processar_pagamento.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+                        });
+                        
+                        const resultado = await response.json();
+                        
+                        if (resultado.sucesso) {
+                            showToast('Pagamento processado com sucesso!', 'success');
+                            setTimeout(() => {
+                                window.location.href = 'servicos.html';
+                            }, 1500);
+                        } else {
+                            showToast(resultado.mensagem || 'Erro ao processar pagamento', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        showToast('Erro ao processar pagamento. Tente novamente.', 'error');
+                    }
+                });
+            }
+        });
+        
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>

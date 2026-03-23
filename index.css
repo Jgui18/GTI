@@ -1,0 +1,938 @@
+:root {
+    --primary-color: #2E8B57;
+    --primary-dark: #1F6B3D;
+    --primary-light: #3CAA6D;
+    --white: #FFFFFF;
+    --light-bg: #F5F7FA;
+    --dark-bg: #121212;
+    --dark-text: #333333;
+    --light-text: #F5F5F5;
+    --gray: #6C757D;
+    --transition: all 0.3s ease;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+    --font-base: 'Poppins', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 130px;
+    font-family: var(--font-base);
+    line-height: 1.6;
+    color: var(--dark-text);
+    background-color: var(--light-bg);
+    transition: var(--transition);
+    font-size: 16px;
+}
+
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Estilos para o botão de perfil */
+.user-logged {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.profile-btn:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+body.dark-mode .profile-btn {
+    background-color: var(--primary-light);
+    color: var(--dark-bg);
+}
+
+body.dark-mode .profile-btn:hover {
+    background-color: var(--primary-color);
+}
+
+/* Barra de acessibilidade */
+.accessibility-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1002;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transition: transform 0.3s ease;
+    transform: translateY(0);
+}
+
+.accessibility-container.hidden {
+    transform: translateY(-100%);
+}
+
+.accessibility-bar {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.accessibility-btn, .font-size-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--light-text);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.accessibility-btn:hover, .font-size-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.font-size-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.font-size-controls span {
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+/* Header */
+header {
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Atualizado */
+    transform: translateY(0);
+}
+
+/* Adicione esta nova classe */
+header.hidden {
+    transform: translateY(-100%);
+}
+
+/* Adicione este ajuste para o conteúdo principal */
+main, .content-wrapper {
+    padding-top: 200px; /* Ajuste conforme a altura total do seu cabeçalho */
+}
+
+body.dark-mode header {
+    background-color: #1E1E1E;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    transition: var(--transition);
+}
+
+.logo-dark {
+    display: none;
+}
+
+body.dark-mode .logo-light {
+    display: none;
+}
+
+body.dark-mode .logo-dark {
+    display: block;
+}
+
+.menu ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.menu a {
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+body.dark-mode .menu a::after {
+    background-color: var(--primary-light);
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-login, .btn-register {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-login {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-login:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-register {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-register:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark-mode .btn-login {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+body.dark-mode .btn-login:hover {
+    background-color: var(--primary-light);
+    color: var(--dark-bg);
+}
+
+body.dark-mode .btn-register {
+    background-color: var(--primary-light);
+}
+
+body.dark-mode .btn-register:hover {
+    background-color: var(--primary-color);
+}
+
+/* Estilos para o cabeçalho dinâmico */
+.user-actions .user-logged {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-actions .user-name {
+    font-weight: 500;
+color: var(--text-color);
+font-size: 0.95rem;
+}
+
+.btn-logout {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-logout:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(46, 139, 87, 0.8), rgba(60, 170, 109, 0.9)), url('images/eco-bg.jpg') no-repeat center/cover;
+    color: var(--white);
+    overflow: hidden;
+    /* Adiciona a imagem de coleta.png como camada de fundo */
+    background-image:
+        
+        url('images/coleta.png'),
+        url('images/eco-bg.jpg');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Overlay mais escuro e uniforme */
+    background: rgba(0,0,0,0.5); /* 0.5 = 50% de opacidade, ajuste conforme necessário */
+    z-index: 1;
+}
+
+/* Novo: camada de blur sobre a imagem de fundo */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* Aplica blur apenas na imagem de fundo */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    /* Remover background-image daqui */
+    /* background-image: url('images/coleta.png'); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Opcional: adicionar leve sombra para reforçar contraste */
+    text-shadow: 0 2px 8px rgba(107, 207, 93, 0.7);
+}
+
+.slogan {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* reforça sombra */
+    animation: fadeInDown 1s ease;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    /* Opcional: reforça contraste */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--white);
+    color: var(--primary-color);
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    animation: fadeIn 1s ease 0.6s both;
+    box-shadow: var(--shadow-md);
+    margin-top: 1.5rem; /* Adicionado para afastar do texto acima */
+}
+
+.btn-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--primary-light);
+    color: var(--white);
+}
+
+/* Seções */
+.section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+    border-radius: 2px;
+}
+
+body.dark-mode .section-title::after {
+    background: linear-gradient(90deg, var(--primary-light), transparent);
+}
+
+/* Cards de Serviços */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    /* Adicione isso para garantir altura igual */
+    align-items: stretch;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    /* Adicione estas linhas para flexbox */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+body.dark-mode .service-card {
+    background: #252525;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(46, 139, 87, 0.1), transparent);
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-card:hover img {
+    transform: scale(1.1);
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+body.dark-mode .service-card h3 {
+    color: var(--primary-light);
+}
+
+.service-card p {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    /* Remova o margin-bottom se quiser menos espaço */
+    flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
+}
+
+.service-card .btn {
+    margin-top: auto; /* Garante que o botão fique na base */
+}
+
+body.dark-mode .service-card p {
+    color: #AAAAAA;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    justify-content: bottom;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark-mode .btn-secondary {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+body.dark-mode .btn-secondary:hover {
+    background-color: var(--primary-light);
+    color: var(--dark-bg);
+}
+
+/* Boxes de Informação */
+.info-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.info-box {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+body.dark-mode .info-box {
+    background: #252525;
+}
+
+.info-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+body.dark-mode .info-box::before {
+    background-color: var(--primary-light);
+}
+
+.info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.info-box:hover::before {
+    width: 100%;
+    opacity: 0.1;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+body.dark-mode .service-icon {
+    color: var(--primary-light);
+}
+
+.info-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-box p {
+    color: var(--gray);
+}
+
+body.dark-mode .info-box p {
+    color: #AAAAAA;
+}
+
+/* Missão, Visão e Valores */
+.mvw-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.mvw-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.mvw-box:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.mvw-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+body.dark-mode .mvw-icon {
+    color: var(--primary-light);
+}
+
+.mvw-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+body.dark-mode footer {
+    background-color: #1F6B3D
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    color: var(--white);
+}
+
+.social-links a:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Botão de Chat */
+.chat-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.chat-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Botão 'Mais caçambas' */
+.mais-cacambas-btn {
+    grid-column: 1 / -1;
+    /* Garante que o botão ocupe toda a largura do grid e possa ser centralizado */
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 2rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: var(--transition);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: none;
+    font-size: 1.1rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+}
+
+.mais-cacambas-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px) scale(1.04);
+}
+
+body.dark-mode .mais-cacambas-btn {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+body.dark-mode .mais-cacambas-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--dark-bg);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .slogan {
+        font-size: 2.8rem;
+    }
+    
+    .section {
+        padding: 4rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+    }
+    
+    .menu ul {
+        gap: 1.5rem;
+    }
+    
+    .slogan {
+        font-size: 2.2rem;
+    }
+    
+    .hero {
+        height: auto;
+        padding: 5rem 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .accessibility-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .menu ul {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .user-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .slogan {
+        font-size: 1.8rem;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .info-boxes, .mvw-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animações personalizadas */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Níveis de Usuário - GTI Soluções Sustentáveis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- CSS compartilhado -->
+    <link rel="stylesheet" href="niveis.css"> <!-- CSS específico desta página -->
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+</head>
+<body>
+    <header>
+        <!-- Barra de acessibilidade -->
+        <div class="accessibility-bar">
+            <button class="accessibility-btn" id="dark-mode-btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            
+            <div class="font-size-controls">
+                <span>Aumentar fonte:</span>
+                <button class="font-size-btn" id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button class="font-size-btn" id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button class="font-size-btn" id="font-reset" aria-label="Resetar tamanho da fonte">A</button>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo principal.png" alt="GTI" class="logo-light">
+                <img src="images/logo logo-light.png" alt="GTI" class="logo-dark">
+            </a>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html#sobre">Sobre Nós</a></li>
+                    <li><a href="index.html#missao">Missão</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Esta div será atualizada dinamicamente -->
+            <div class="user-actions">
+                <!-- Conteúdo será inserido pelo JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="levels-hero">
+            <div class="container">
+                <h1>Seu Nível de Sustentabilidade</h1>
+                <p>Descubra como seu compromisso com o meio ambiente é recompensado</p>
+            </div>
+        </section>
+
+         <!-- Botão Voltar -->
+        <div class="container">
+            <button class="btn-voltar" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </button>
+        </div>
+
+        <div class="container levels-container">
+            <div class="user-level-info">
+                <h2>Seu Progresso</h2>
+                <div class="level-badge bronze"></div>
+                <p>Você está no nível <strong>Bronze</strong></p>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 25%;"></div>
+                </div>
+                
+                <p>Faltam <strong>15kg</strong> de reciclagem para o próximo nível</p>
+            </div>
+
+            <h2 style="text-align: center; margin-bottom: 2rem;">Níveis de Usuário</h2>
+            
+            <div class="levels-grid">
+                <!-- Nível Bronze -->
+                <div class="level-card current">
+                    <div class="level-badge bronze"></div>
+                    <h3>Bronze</h3>
+                    <ul class="level-requirements">
+                        <li><i class="fas fa-recycle"></i> 0-50kg reciclados</li>
+                    </ul>
+                    <ul class="benefits-list">
+                        <li>Acesso básico aos serviços</li>
+                        <li>Relatório mensal simples</li>
+                        <li>Badge de perfil Bronze</li>
+                    </ul>
+                </div>
+                
+                <!-- Nível Prata -->
+                <div class="level-card">
+                    <div class="level-badge silver"> </div>
+                    <h3>Prata</h3>
+                    <ul class="level-requirements">
+                        <li><i class="fas fa-recycle"></i> 50-150kg reciclados</li>
+                    </ul>
+                    <ul class="benefits-list">
+                        <li>Todos os benefícios Bronze</li>
+                        <li>Desconto de 5% em serviços</li>
+                        <li>Relatório mensal detalhado</li>
+                        <li>Badge de perfil Prata</li>
+                    </ul>
+                </div>
+                
+                <!-- Nível Ouro -->
+                <div class="level-card">
+                    <div class="level-badge gold"></div>
+                    <h3>Ouro</h3>
+                    <ul class="level-requirements">
+                        <li><i class="fas fa-recycle"></i> 150-300kg reciclados</li>
+                    </ul>
+                    <ul class="benefits-list">
+                        <li>Todos os benefícios Prata</li>
+                        <li>Desconto de 10% em serviços</li>
+                        <li>Coleta prioritária</li>
+                        <li>Certificado digital</li>
+                        <li>Badge de perfil Ouro</li>
+                    </ul>
+                </div>
+                
+                <!-- Nível Platina -->
+                <div class="level-card">
+                    <div class="level-badge platinum"></div>
+                    <h3>Platina</h3>
+                    <ul class="level-requirements">
+                        <li><i class="fas fa-recycle"></i> 300-500kg reciclados</li>
+                    </ul>
+                    <ul class="benefits-list">
+                        <li>Todos os benefícios Ouro</li>
+                        <li>Desconto de 15% em serviços</li>
+                        <li>Consultoria gratuita anual</li>
+                        <li>Relatório trimestral personalizado</li>
+                        <li>Badge de perfil Platina</li>
+                    </ul>
+                </div>
+                
+                <!-- Nível Diamante -->
+                <div class="level-card">
+                    <div class="level-badge diamond"></div>
+                    <h3>Diamante</h3>
+                    <ul class="level-requirements">
+                        <li><i class="fas fa-recycle"></i> 500+kg reciclados</li>
+                    </ul>
+                    <ul class="benefits-list">
+                        <li>Todos os benefícios Platina</li>
+                        <li>Desconto de 20% em serviços</li>
+                        <li>Coleta sob demanda</li>
+                        <li>Certificado físico de sustentabilidade</li>
+                        <li>Destaque no hall da fama GTI</li>
+                        <li>Badge de perfil Diamante</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="how-to-level">
+                <h2>Como Subir de Nível?</h2>
+                <div class="steps">
+                    <div class="step">
+                        <h3><i class="fas fa-recycle"></i> Recicle Mais</h3>
+                        <p>Cada material reciclado conta pontos para seu nível. Quanto mais você recicla, mais rápido avança.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h3><i class="fas fa-calendar-alt"></i> Frequência</h3>
+                        <p>Usuários que reciclam regularmente ganham bônus de progressão.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h3><i class="fas fa-seedling"></i> Variedade</h3>
+                        <p>Reciclar diferentes tipos de materiais (plástico, metal, vidro, etc.) acelera seu progresso.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h3><i class="fas fa-users"></i> Indique Amigos</h3>
+                        <p>Indique novos usuários e ganhe pontos extras quando eles reciclarem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Botão de Chat -->
+    <div class="chat-button">
+        🤖
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html#servicos">Serviços</a>
+                    <a href="index.html#sobre">Sobre Nós</a>
+                    <a href="index.html#missao">Missão</a>
+                    <a href="politica-de-privacidade.html">Política de Privacidade</a>
+                    <a href="termos-de-uso.html">Termos de Uso</a>
+                </div>
+                
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> gettrashintelligence@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href= "https://www.facebook.com/?locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/watch?v=GPAYhCiBNAo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <p class="copyright">&copy; 2025 Get Trash Intelligence - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Controle do dark mode
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        darkModeBtn.addEventListener('click', toggleDarkMode);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Atualiza o ícone do botão
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                localStorage.setItem('darkMode', 'ativado');
+            } else {
+                darkModeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                localStorage.removeItem('darkMode');
+            }
+        }
+
+        // Verifica se há dark mode ativo no carregamento
+        if (localStorage.getItem('darkMode') === 'ativado') {
+            document.body.classList.add('dark-mode');
+            darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+        }
+
+        // Controle de tamanho da fonte
+        const fontIncrease = document.getElementById('font-increase');
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontReset = document.getElementById('font-reset');
+        
+        // Tamanho base da fonte (16px)
+        let fontSize = 16;
+
+        fontIncrease.addEventListener('click', function() {
+            if (fontSize < 24) {
+                fontSize += 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontDecrease.addEventListener('click', function() {
+            if (fontSize > 12) {
+                fontSize -= 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+
+        fontReset.addEventListener('click', function() {
+            fontSize = 16;
+            document.documentElement.style.fontSize = fontSize + 'px';
+            localStorage.setItem('fontSize', fontSize);
+        });
+
+        // Verifica se há tamanho de fonte salvo
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            fontSize = parseInt(savedFontSize);
+            document.documentElement.style.fontSize = fontSize + 'px';
+        }
+
+        // Smooth scrolling para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efeito de aparecimento suave ao rolar
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.info-box, .service-card, .mvw-box');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // niveis.js - Lógica da página de níveis
+
+        document.addEventListener('DOMContentLoaded', function() {
+        // Verificar se usuário está logado
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+        
+        if (!usuarioLogado) {
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        // Simular dados de progresso (em produção, isso viria do backend)
+        const userData = {
+            nivelAtual: 'bronze',
+            kgReciclados: 35,
+            proximoNivel: 'silver',
+            kgParaProximoNivel: 15,
+            progresso: 25 // porcentagem
+        };
+        
+        // Atualizar interface com dados do usuário
+        const levelBadge = document.querySelector('.user-level-info .level-badge');
+        const progressBar = document.querySelector('.progress-bar');
+        const levelText = document.querySelector('.user-level-info p strong');
+        const kgText = document.querySelector('.user-level-info p:last-child strong');
+        
+        // Definir classe do nível atual
+        levelBadge.className = `level-badge ${userData.nivelAtual}`;
+        levelBadge.querySelector('span').textContent = userData.nivelAtual.charAt(0).toUpperCase() + userData.nivelAtual.slice(1);
+        
+        // Atualizar textos
+        levelText.textContent = userData.nivelAtual.charAt(0).toUpperCase() + userData.nivelAtual.slice(1);
+        kgText.textContent = `${userData.kgParaProximoNivel}kg`;
+        
+        // Atualizar barra de progresso
+        progressBar.style.width = `${userData.progresso}%`;
+        
+        // Marcar card do nível atual
+        const currentLevelCard = document.querySelector(`.level-card .level-badge.${userData.nivelAtual}`).closest('.level-card');
+        if (currentLevelCard) {
+            currentLevelCard.classList.add('current');
+        }
+        });
+    </script>
+    <script src="auth.js"></script>
+    <script src="niveis.js"></script>
+</body>
+</html>

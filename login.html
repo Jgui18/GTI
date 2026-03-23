@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GTI Soluções Sustentáveis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="stylesheet" href="login.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <header>
+        <!-- Barra de acessibilidade -->
+        <div class="accessibility-bar">
+            <button class="accessibility-btn" id="dark-mode-btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            
+            <div class="font-size-controls">
+                <span>Aumentar fonte:</span>
+                <button class="font-size-btn" id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button class="font-size-btn" id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button class="font-size-btn" id="font-reset" aria-label="Resetar tamanho da fonte">A</button>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo principal.png" alt="GTI" class="logo-light">
+                <img src="images/logo logo-light.png" alt="GTI" class="logo-dark">
+            </a>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html#sobre">Sobre Nós</a></li>
+                    <li><a href="index.html#missao">Missão</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Esta div será atualizada dinamicamente -->
+            <div class="user-actions">
+                <!-- Conteúdo será inserido pelo JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <main class="login-main">
+        <section class="login-section">
+            <div class="login-container">
+                <div class="login-header">
+                    <h1 class="login-title">Acesse sua conta</h1>
+                    <p class="login-subtitle">Gerencie seus agendamentos e acompanhe seu impacto ambiental</p>
+                </div>
+                
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="Digite sua senha" maxlength="6" minlength="6" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <button type="button" class="toggle-password" aria-label="Mostrar senha">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <span>Lembrar de mim</span>
+                        </label>
+                        <a href="esqueci.html" class="forgot-password">Esqueceu a senha?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-login-submit">
+                        <span>Entrar</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    
+                    <div class="login-divider">
+                        <span>ou</span>
+                    </div>
+                    
+                    <!-- Google Sign-In -->
+                    <div id="g_id_onload"
+                         data-client_id="SEU_CLIENT_ID_AQUI"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleCredentialResponse"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signin_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+                    <!-- FIM Google Sign-In -->
+                </form>
+                
+                <div class="login-footer">
+                    <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+                </div>
+            </div>
+            
+            <div class="login-hero">
+                <div class="hero-content">
+                    <h2>Juntos por um planeta mais verde</h2>
+                    <p>Cada acesso representa um avanço concreto na construção de um futuro mais sustentável</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botão de Chat -->
+    <div class="chat-button">
+        <i class="fas fa-comment-dots" href="chatbot.html"></i>
+    </div>
+    <a href="chatbot.html" class="chat-button">🤖</a>
+    
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html#servicos">Serviços</a>
+                    <a href="index.html#sobre">Sobre Nós</a>
+                    <a href="index.html#missao">Missão</a>
+                    <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>                    
+                    <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+                </div>
+                
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> gettrashintelligence@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href= "https://www.facebook.com/?locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/watch?v=GPAYhCiBNAo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <p class="copyright">&copy; 2025 Get Trash Intelligence - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Controles de acessibilidade (iguais ao index)
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        const fontIncrease = document.getElementById('font-increase');
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontReset = document.getElementById('font-reset');
+        
+        // Dark Mode
+        darkModeBtn.addEventListener('click', toggleDarkMode);
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const footer = document.querySelector('footer');
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            const footerIcons = document.querySelectorAll('.footer-content i, .footer-content .fab');
+            const heroContent = document.querySelector('.login-hero .hero-content');
+            // Novos elementos para acessibilidade
+            const accessibilityBar = document.querySelector('.accessibility-bar');
+            const fontSizeControls = document.querySelector('.font-size-controls');
+            const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+            const fontSizeLabel = fontSizeControls ? fontSizeControls.querySelector('span') : null;
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeBtn.innerHTML = '<i class="fas fa-sun" style="color:#FFFFFF"></i> <span style="color:#FFFFFF">Light Mode</span>';
+                localStorage.setItem('darkMode', 'ativado');
+                // Footer: texto, links e ícones brancos
+                if (footer) footer.style.color = '#FFFFFF';
+                footerLinks.forEach(link => link.style.color = '#FFFFFF');
+                footerIcons.forEach(icon => icon.style.color = '#FFFFFF');
+                // Hero: texto branco
+                if (heroContent) heroContent.style.color = '#FFFFFF';
+                // Barra de acessibilidade: texto e botões brancos
+                if (accessibilityBar) accessibilityBar.style.color = '#FFFFFF';
+                if (fontSizeLabel) fontSizeLabel.style.color = '#FFFFFF';
+                fontSizeBtns.forEach(btn => btn.style.color = '#FFFFFF');
+            } else {
+                darkModeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                localStorage.removeItem('darkMode');
+                // Footer: volta ao padrão
+                if (footer) footer.style.color = '';
+                footerLinks.forEach(link => link.style.color = '');
+                footerIcons.forEach(icon => icon.style.color = '');
+                // Hero: volta ao padrão
+                if (heroContent) heroContent.style.color = '';
+                // Barra de acessibilidade: volta ao padrão
+                if (accessibilityBar) accessibilityBar.style.color = '';
+                if (fontSizeLabel) fontSizeLabel.style.color = '';
+                fontSizeBtns.forEach(btn => btn.style.color = '');
+            }
+        }
+        
+        // Verifica dark mode ao carregar
+        if (localStorage.getItem('darkMode') === 'ativado') {
+            document.body.classList.add('dark-mode');
+            darkModeBtn.innerHTML = '<i class="fas fa-sun" style="color:#FFFFFF"></i> <span style="color:#FFFFFF">Light Mode</span>';
+            // Footer: texto, links e ícones brancos ao recarregar
+            const footer = document.querySelector('footer');
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            const footerIcons = document.querySelectorAll('.footer-content i, .footer-content .fab');
+            const heroContent = document.querySelector('.login-hero .hero-content');
+            // Barra de acessibilidade: texto e botões brancos ao recarregar
+            const accessibilityBar = document.querySelector('.accessibility-bar');
+            const fontSizeControls = document.querySelector('.font-size-controls');
+            const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+            const fontSizeLabel = fontSizeControls ? fontSizeControls.querySelector('span') : null;
+            if (footer) footer.style.color = '#FFFFFF';
+            footerLinks.forEach(link => link.style.color = '#FFFFFF');
+            footerIcons.forEach(icon => icon.style.color = '#FFFFFF');
+            if (heroContent) heroContent.style.color = '#FFFFFF';
+            if (accessibilityBar) accessibilityBar.style.color = '#FFFFFF';
+            if (fontSizeLabel) fontSizeLabel.style.color = '#FFFFFF';
+            fontSizeBtns.forEach(btn => btn.style.color = '#FFFFFF');
+        }
+        
+        // Controle de tamanho da fonte
+        let fontSize = 16;
+        
+        fontIncrease.addEventListener('click', () => {
+            if (fontSize < 24) {
+                fontSize += 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+        
+        fontDecrease.addEventListener('click', () => {
+            if (fontSize > 12) {
+                fontSize -= 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+        
+        fontReset.addEventListener('click', () => {
+            fontSize = 16;
+            document.documentElement.style.fontSize = fontSize + 'px';
+            localStorage.setItem('fontSize', fontSize);
+        });
+        
+        // Verifica tamanho da fonte salvo
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            fontSize = parseInt(savedFontSize);
+            document.documentElement.style.fontSize = fontSize + 'px';
+        }
+        
+        // Mostrar/ocultar senha
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        });
+        
+            
+        // Nova função de toast (adicionar no início do <script>)
+function showToast(message, type = 'info', duration = 3000) {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    let icon = '';
+    switch(type) {
+        case 'success': icon = '<i class="fas fa-check-circle"></i>'; break;
+        case 'error': icon = '<i class="fas fa-exclamation-circle"></i>'; break;
+        default: icon = '<i class="fas fa-info-circle"></i>';
+    }
+    toast.innerHTML = `${icon}${message}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 100);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
+// Nova versão do handleCredentialResponse
+function handleCredentialResponse(response) {
+    showToast('Login com Google realizado! Redirecionando...', 'success');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1500);
+}
+
+// Nova versão do evento de login
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("password").value;
+    const remember = document.getElementById("remember").checked;
+    
+    // Desabilita o botão de submit durante o processamento
+    const submitBtn = document.querySelector('.btn-login-submit');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Entrando...</span>';
+    
+    try {
+        // Envia dados para o backend PHP
+        const response = await fetch('login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                senha: senha,
+                remember: remember
+            })
+        });
+
+        const resultado = await response.json();
+
+        if (resultado.sucesso) {
+            showToast(resultado.mensagem || "Login bem-sucedido! Redirecionando...", "success");
+            // Salva dados do usuário no localStorage para compatibilidade com auth.js
+            if (resultado.usuario) {
+                localStorage.setItem('usuarioLogado', JSON.stringify({
+                    email: resultado.usuario.email,
+                    nome: resultado.usuario.nome,
+                    tipoUsuario: resultado.usuario.tipoUsuario
+                }));
+            }
+            setTimeout(() => {
+                window.location.href = "servicos.html";
+            }, 1500);
+        } else {
+            showToast(resultado.mensagem || "E-mail ou senha incorretos!", "error");
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        showToast("Erro ao conectar com o servidor. Tente novamente mais tarde.", "error");
+    } finally {
+        // Reabilita o botão
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    }
+});
+
+        document.getElementById('btn-forgot').onclick = function() {
+            window.location.href = 'recuperar-senha.html';
+        };
+        
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>

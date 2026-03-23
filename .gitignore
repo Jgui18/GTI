@@ -1,0 +1,30 @@
+# IDE / Editor (ignorar preferências locais)
+.idea/
+.vscode/
+*.iml
+*.sublime-*
+
+# Logs (evita subir logs com dados sensíveis)
+logs/*.log
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# PHP
+vendor/
+composer.lock
+*.cache
+
+# Configurações locais (descomente se criar arquivo de config separado)
+# conexao.local.php
+# .env
+# .env.local
+
+# Backup e temporários
+*.bak
+*.tmp
+*~
+*.swp

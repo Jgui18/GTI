@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - GTI Soluções Sustentáveis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="stylesheet" href="cadastro.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <header>
+        <!-- Barra de acessibilidade -->
+        <div class="accessibility-bar">
+            <button class="accessibility-btn" id="dark-mode-btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            
+            <div class="font-size-controls">
+                <span>Aumentar fonte:</span>
+                <button class="font-size-btn" id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button class="font-size-btn" id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button class="font-size-btn" id="font-reset" aria-label="Resetar tamanho da fonte">A</button>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo principal.png" alt="GTI" class="logo-light">
+                <img src="images/logo logo-light.png" alt="GTI" class="logo-dark">
+            </a>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html#sobre">Sobre Nós</a></li>
+                    <li><a href="index.html#missao">Missão</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Esta div será atualizada dinamicamente -->
+            <div class="user-actions">
+                <!-- Conteúdo será inserido pelo JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <main class="register-main">
+        <section class="register-section">
+            <div class="register-container">
+                <div class="register-header">
+                    <h1 class="register-title">Crie sua conta</h1>
+                    <p class="register-subtitle">Junte-se a nós na missão por um planeta mais sustentável</p>
+                    <div class="register-footer" style="margin-bottom: 1.5rem;">
+                        <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+                    </div>
+                </div>
+                
+                <form class="register-form" id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" placeholder="Digite seu nome" required>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="mother-name">Nome materno</label>
+                            <input type="text" id="mother-name" placeholder="Digite o nome da mãe" required>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                            <i class="fas fa-id-card input-icon"></i>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" placeholder="(00) 00000-0000" maxlength="15" required>
+                            <i class="fas fa-phone input-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            <input type="password" id="password" placeholder="Crie uma senha" maxlength="6" minlength="6" required>
+                            <i class="fas fa-lock input-icon"></i>
+                            <button type="button" class="toggle-password" aria-label="Mostrar senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmar senha</label>
+                            <input type="password" id="confirm-password" placeholder="Repita sua senha" maxlength="6" minlength="6" required>
+                            <i class="fas fa-lock input-icon"></i>
+                            <button type="button" class="toggle-password" aria-label="Mostrar senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" placeholder="00000-000" maxlength="9" required>
+                            <i class="fas fa-map-pin input-icon"></i>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="user-type">Tipo de usuário</label>
+                            <select id="user-type" required>
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="collector">Residência</option>
+                                <option value="recycler">Empresa/Comércio</option>
+                                <option value="donor">Condomínio Residencial</option>
+                            </select>
+                            <i class="fas fa-users input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Endereço</label>
+                        <input type="text" id="address" placeholder="Rua, bairro, cidade/UF" required>
+                        <i class="fas fa-map-marker-alt input-icon"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="address-number">Complemento</label>
+                        <input type="text" id="address-number" placeholder="Número da casa/apto" required>
+                        <i class="fas fa-home input-icon"></i>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">Li e aceito os <a href="termos-uso.html">Termos de Uso</a> e <a href="politica-privacidade.html">Política de Privacidade</a></label>
+                    </div>
+                    
+                    <button type="submit" class="btn-register-submit">
+                        <span>Criar conta</span>
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+                    
+                    <div class="register-divider">
+                        <span>ou</span>
+                    </div>
+                    
+                    <!-- Google Sign-In -->
+                    <div id="g_id_onload"
+                         data-client_id="SEU_CLIENT_ID_AQUI"
+                         data-context="signup"
+                         data-ux_mode="popup"
+                         data-callback="handleCredentialResponse"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signup_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+                    <!-- FIM Google Sign-In -->
+                </form>
+            </div>
+            
+            <div class="register-hero">
+                <div class="hero-content">
+                    <h2>Sua jornada sustentável começa aqui</h2>
+                    <p>Cada cadastro nos ajuda a construir um futuro mais verde</p>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Agendamento fácil de coletas</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Acompanhe seu impacto ambiental</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Conecte-se com a rede de reciclagem</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botão de Chat -->
+    <div class="chat-button">
+        <i class="fas fa-comment-dots" href="chatbot.html"></i>
+    </div>
+    <a href="chatbot.html" class="chat-button">🤖</a>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html#servicos">Serviços</a>
+                    <a href="index.html#sobre">Sobre Nós</a>
+                    <a href="index.html#missao">Missão</a>
+                    <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>                 
+                    <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+                </div>
+                
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> gettrashintelligence@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href= "https://www.facebook.com/?locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/watch?v=GPAYhCiBNAo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <p class="copyright">&copy; 2025 Get Trash Intelligence - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Função para mostrar toast notifications
+function showToast(message, type = 'info', duration = 3000) {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    
+    // Ícone baseado no tipo
+    let icon = '';
+    switch(type) {
+        case 'success':
+            icon = '<i class="fas fa-check-circle"></i>';
+            break;
+        case 'error':
+            icon = '<i class="fas fa-exclamation-circle"></i>';
+            break;
+        case 'warning':
+            icon = '<i class="fas fa-exclamation-triangle"></i>';
+            break;
+        default:
+            icon = '<i class="fas fa-info-circle"></i>';
+    }
+    
+    toast.innerHTML = `${icon}${message}`;
+    document.body.appendChild(toast);
+    
+    // Mostra o toast
+    setTimeout(() => toast.classList.add('show'), 100);
+    
+    // Remove o toast após a duração
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
+        // Controles de acessibilidade (iguais ao index)
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        const fontIncrease = document.getElementById('font-increase');
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontReset = document.getElementById('font-reset');
+        
+        // Dark Mode
+        darkModeBtn.addEventListener('click', toggleDarkMode);
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const footer = document.querySelector('footer');
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            const footerIcons = document.querySelectorAll('.footer-content i, .footer-content .fab');
+            const registerHeroContent = document.querySelector('.register-hero .hero-content');
+            const registerHeroIcons = document.querySelectorAll('.register-hero .hero-content i');
+            // Novos elementos para acessibilidade
+            const accessibilityBar = document.querySelector('.accessibility-bar');
+            const accessibilityText = accessibilityBar.querySelectorAll('span, button, #dark-mode-btn');
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                localStorage.setItem('darkMode', 'ativado');
+                // Footer: texto, links e ícones brancos
+                if (footer) footer.style.color = '#FFFFFF';
+                footerLinks.forEach(link => link.style.color = '#FFFFFF');
+                footerIcons.forEach(icon => icon.style.color = '#FFFFFF');
+                // Register hero: texto e ícones brancos
+                if (registerHeroContent) registerHeroContent.style.color = '#FFFFFF';
+                registerHeroIcons.forEach(icon => icon.style.color = '#FFFFFF');
+                // Barra de acessibilidade: texto e botões brancos
+                if (accessibilityBar) accessibilityBar.style.color = '#FFFFFF';
+                accessibilityText.forEach(el => el.style.color = '#FFFFFF');
+            } else {
+                darkModeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                localStorage.removeItem('darkMode');
+                // Footer: volta ao padrão
+                if (footer) footer.style.color = '';
+                footerLinks.forEach(link => link.style.color = '');
+                footerIcons.forEach(icon => icon.style.color = '');
+                // Register hero: volta ao padrão
+                if (registerHeroContent) registerHeroContent.style.color = '';
+                registerHeroIcons.forEach(icon => icon.style.color = '');
+                // Barra de acessibilidade: volta ao padrão
+                if (accessibilityBar) accessibilityBar.style.color = '';
+                accessibilityText.forEach(el => el.style.color = '');
+            }
+        }
+        
+        // Verifica dark mode ao carregar
+        if (localStorage.getItem('darkMode') === 'ativado') {
+            document.body.classList.add('dark-mode');
+            darkModeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            // Footer: texto, links e ícones brancos ao recarregar
+            const footer = document.querySelector('footer');
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            const footerIcons = document.querySelectorAll('.footer-content i, .footer-content .fab');
+            const registerHeroContent = document.querySelector('.register-hero .hero-content');
+            const registerHeroIcons = document.querySelectorAll('.register-hero .hero-content i');
+            // Novos elementos para acessibilidade
+            const accessibilityBar = document.querySelector('.accessibility-bar');
+            const accessibilityText = accessibilityBar.querySelectorAll('span, button, #dark-mode-btn');
+            if (footer) footer.style.color = '#FFFFFF';
+            footerLinks.forEach(link => link.style.color = '#FFFFFF');
+            footerIcons.forEach(icon => icon.style.color = '#FFFFFF');
+            if (registerHeroContent) registerHeroContent.style.color = '#FFFFFF';
+            registerHeroIcons.forEach(icon => icon.style.color = '#FFFFFF');
+            // Barra de acessibilidade: texto e botões brancos
+            if (accessibilityBar) accessibilityBar.style.color = '#FFFFFF';
+            accessibilityText.forEach(el => el.style.color = '#FFFFFF');
+        }
+        
+        // Controle de tamanho da fonte
+        let fontSize = 16;
+        
+        fontIncrease.addEventListener('click', () => {
+            if (fontSize < 24) {
+                fontSize += 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+        
+        fontDecrease.addEventListener('click', () => {
+            if (fontSize > 12) {
+                fontSize -= 2;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+        
+        fontReset.addEventListener('click', () => {
+            fontSize = 16;
+            document.documentElement.style.fontSize = fontSize + 'px';
+            localStorage.setItem('fontSize', fontSize);
+        });
+        
+        // Verifica tamanho da fonte salvo
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            fontSize = parseInt(savedFontSize);
+            document.documentElement.style.fontSize = fontSize + 'px';
+        }
+        
+        // Mostrar/ocultar senha
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('input');
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+        });
+        
+        // Máscaras para campos
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        });
+        
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+            e.target.value = value;
+        });
+        
+        document.getElementById('cep').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+            e.target.value = value;
+        });
+        
+        document.getElementById('cep').addEventListener('blur', function(e) {
+            const cep = e.target.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            // Monta o endereço (rua, bairro, cidade, UF)
+                            let endereco = data.logradouro ? data.logradouro : '';
+                            if (data.complemento) endereco += ', ' + data.complemento;
+                            if (data.bairro) endereco += ' - ' + data.bairro;
+                            if (data.localidade && data.uf) endereco += ' - ' + data.localidade + '/' + data.uf;
+                            document.getElementById('address').value = endereco;
+                        } else {
+                            // CEP não encontrado
+                            document.getElementById('address').value = '';
+                        }
+                    })
+                    .catch(() => {
+                        document.getElementById('address').value = '';
+                    });
+            }
+        });
+        
+            
+        // Callback do Google Sign-In
+        function handleCredentialResponse(response) {
+            // Aqui você pode enviar o token para seu backend se desejar
+            showToast('Cadastro com Google realizado! Redirecionando...');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+        }
+        
+       // CADASTRO DE USUÁRIO
+    document.getElementById("registerForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    // Validação de senha
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    if (password !== confirmPassword) {
+        showToast("As senhas não coincidem!", "error");
+        return;
+    }
+
+    if (!document.getElementById("terms").checked) {
+        showToast("Você deve aceitar os termos e condições!", "error");
+        return;
+    }
+
+    // Coletar todos os dados do formulário
+    const userData = {
+        nome: document.getElementById("name").value,
+        nomeMaterno: document.getElementById("mother-name").value,
+        email: document.getElementById("email").value,
+        cpf: document.getElementById("cpf").value,
+        telefone: document.getElementById("phone").value,
+        senha: password,
+        endereco: document.getElementById("address").value,
+        complemento: document.getElementById("address-number").value,
+        cep: document.getElementById("cep").value,
+        tipoUsuario: document.getElementById("user-type").value
+    };
+
+    // Desabilita o botão de submit durante o processamento
+    const submitBtn = document.querySelector('.btn-register-submit');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Processando...</span>';
+
+    try {
+        // Envia dados para o backend PHP
+        const response = await fetch('cadastro.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData)
+        });
+
+        const resultado = await response.json();
+
+        if (resultado.sucesso) {
+            showToast(resultado.mensagem || "Cadastro realizado com sucesso!", "success");
+            // Salva dados do usuário no localStorage para compatibilidade com auth.js
+            if (resultado.usuario) {
+                localStorage.setItem('usuarioLogado', JSON.stringify({
+                    email: resultado.usuario.email,
+                    nome: resultado.usuario.nome,
+                    tipoUsuario: userData.tipoUsuario
+                }));
+            }
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+        } else {
+            showToast(resultado.mensagem || "Erro ao realizar cadastro!", "error");
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        showToast("Erro ao conectar com o servidor. Tente novamente mais tarde.", "error");
+    } finally {
+        // Reabilita o botão
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    }
+});
+    </script>
+
+        <!-- Adicione esta linha ANTES do fechamento do body -->
+    <script src="auth.js"></script>
+</body>
+</html>
