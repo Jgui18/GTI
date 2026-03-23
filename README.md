@@ -4,6 +4,8 @@
 
 Sistema web desenvolvido para a faculdade, com cadastro, login, planos de coleta, pagamento e área empresarial. Funciona localmente com XAMPP.
 
+**[Acessar o projeto no ar](https://gettrashintelligence.netlify.app/)**
+
 ---
 
 ## O que faz
@@ -96,21 +98,6 @@ GTI/
 - Pagamentos são simulados (não há integração com gateway real)  
 - Use apenas em ambiente local ou de desenvolvimento  
 - Se algo não funcionar, confira se o MySQL está rodando e se o `bd.sql` foi importado
-
----
-
-## Publicar no GitHub
-
-Se quiser colocar o projeto no GitHub:
-
-1. Crie um repositório novo em [github.com/new](https://github.com/new) (pode ser público e sem README inicial)
-2. No terminal, dentro da pasta do projeto:
-   ```bash
-   git remote add origin https://github.com/SEU_USUARIO/GTI.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. Troque `SEU_USUARIO` pelo seu usuário do GitHub
 
 ---
 
