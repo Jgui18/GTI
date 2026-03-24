@@ -8,6 +8,14 @@ Sistema web desenvolvido para a faculdade, com cadastro, login, planos de coleta
 
 ---
 
+## Sobre a GTI – A ideia
+
+A **Get Trash Intelligence** nasceu para transformar a gestão de resíduos em um processo acessível, eficiente e recompensador. A plataforma conecta **geradores de resíduos** (pessoas físicas, condomínios e empresas) a **coletores e recicladores** qualificados, facilitando o agendamento de coletas seletivas, o descarte correto de materiais recicláveis e o acompanhamento do impacto ambiental gerado.
+
+Com uma abordagem que une tecnologia e sustentabilidade, a GTI oferece planos de coleta personalizados, gamificação para engajar os usuários e uma área empresarial para demandas específicas. O objetivo é promover a economia circular, reduzir o envio de resíduos para aterros e incentivar práticas responsáveis por meio de uma experiência simples e transparente.
+
+---
+
 ## O que faz
 
 - **Cadastro e login** de usuários (cliente, empresa ou admin)
