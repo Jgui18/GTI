@@ -1,29 +1,17 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
+declare(strict_types=1);
 
-session_start();
-if (!isset($_SESSION['usuario_id'])) {
-    http_response_code(401);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Não autenticado']);
-    exit;
-}
-
+require_once 'api_bootstrap.php';
 require_once 'conexao.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Método não permitido']);
-    exit;
-}
+initApiHeaders(['POST']);
+startSecureSession();
+requireMethod('POST');
+requireAdmin();
 
-$dados = json_decode(file_get_contents('php://input'), true);
+$dados = getJsonInput();
 if (empty($dados['id_cacamba'])) {
-    http_response_code(400);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Campo id_cacamba é obrigatório']);
-    exit;
+    sendJson(['sucesso' => false, 'mensagem' => 'Campo id_cacamba é obrigatório'], 400);
 }
 
 $id = (int)$dados['id_cacamba'];
@@ -39,9 +27,7 @@ foreach ($allowed as $f) {
 }
 
 if (empty($fields)) {
-    http_response_code(400);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Nenhum campo para atualizar']);
-    exit;
+    sendJson(['sucesso' => false, 'mensagem' => 'Nenhum campo para atualizar'], 400);
 }
 
 try {
@@ -51,11 +37,8 @@ try {
     $params['id_cacamba'] = $id;
     $stmt->execute($params);
 
-    echo json_encode(['sucesso' => true, 'mensagem' => 'Caçamba atualizada', 'rowsAffected' => $stmt->rowCount()]);
+    sendJson(['sucesso' => true, 'mensagem' => 'Caçamba atualizada', 'rowsAffected' => $stmt->rowCount()]);
 } catch (PDOException $e) {
     error_log('Erro update_cacamba: ' . $e->getMessage());
-    http_response_code(500);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro interno ao atualizar caçamba']);
+    sendJson(['sucesso' => false, 'mensagem' => 'Erro interno ao atualizar caçamba'], 500);
 }
-
-?>

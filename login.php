@@ -1,33 +1,21 @@
 <?php
+declare(strict_types=1);
 /**
  * Arquivo para processar autenticação/login de usuários
  * Verifica credenciais e inicia sessão PHP
  */
 
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
-
-// Inicia sessão
-session_start();
-
-// Verifica se a requisição é POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode([
-        'sucesso' => false,
-        'mensagem' => 'Método não permitido'
-    ]);
-    exit;
-}
+require_once 'api_bootstrap.php';
+initApiHeaders(['POST']);
+startSecureSession();
+requireMethod('POST');
 
 // Inclui arquivo de conexão
 require_once 'conexao.php';
 
 try {
     // Recebe dados do formulário
-    $dados = json_decode(file_get_contents('php://input'), true);
+    $dados = getJsonInput();
     
     // Validação dos campos obrigatórios
     if (empty($dados['email']) || empty($dados['senha'])) {
@@ -63,6 +51,18 @@ try {
     
     // Verifica se o usuário existe e se a senha está correta
     if ($usuario && password_verify($senha, $usuario['senha'])) {
+        session_regenerate_id(true);
+
+        // Atualiza hash de senha quando algoritmo/custo estiver desatualizado
+        if (password_needs_rehash($usuario['senha'], PASSWORD_DEFAULT)) {
+            $novoHash = password_hash($senha, PASSWORD_DEFAULT);
+            $updateSenha = $pdo->prepare("UPDATE usuario SET senha = :senha WHERE id_usuario = :id_usuario");
+            $updateSenha->execute([
+                'senha' => $novoHash,
+                'id_usuario' => $usuario['id_usuario']
+            ]);
+        }
+
         // Inicia sessão
         $_SESSION['usuario_id'] = $usuario['id_usuario'];
         $_SESSION['usuario_email'] = $usuario['email'];
@@ -75,8 +75,7 @@ try {
             setcookie('usuario_email', $email, time() + (30 * 24 * 60 * 60), '/');
         }
         
-        http_response_code(200);
-        echo json_encode([
+        sendJson([
             'sucesso' => true,
             'mensagem' => 'Login bem-sucedido!',
             'usuario' => [
@@ -85,29 +84,26 @@ try {
                 'email' => $usuario['email'],
                 'tipoUsuario' => $usuario['tipo_usuario'] ?? null
             ]
-        ]);
+        ], 200);
     } else {
         // Não revela se o email existe ou não (segurança)
-        http_response_code(401);
-        echo json_encode([
+        sendJson([
             'sucesso' => false,
             'mensagem' => 'E-mail ou senha inválidos'
-        ]);
+        ], 401);
     }
     
 } catch (PDOException $e) {
     error_log("Erro no login: " . $e->getMessage());
-    http_response_code(500);
-    echo json_encode([
+    sendJson([
         'sucesso' => false,
         'mensagem' => 'Erro interno do servidor. Tente novamente mais tarde.'
-    ]);
+    ], 500);
 } catch (Exception $e) {
     error_log("Erro no login: " . $e->getMessage());
-    http_response_code(500);
-    echo json_encode([
+    sendJson([
         'sucesso' => false,
-        'mensagem' => $e->getMessage()
-    ]);
+        'mensagem' => 'Erro interno do servidor. Tente novamente mais tarde.'
+    ], 500);
 }
 ?>

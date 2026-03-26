@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <label for="mother-name">Nome materno</label>
-                            <input type="text" id="mother-name" placeholder="Digite o nome da mãe" required>
+                            <input type="text" id="mother-name" placeholder="Digite o nome da mãe">
                             <i class="fas fa-user input-icon"></i>
                         </div>
                         <div class="form-group">
@@ -83,13 +83,13 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="cpf">CPF</label>
-                            <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                            <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14">
                             <i class="fas fa-id-card input-icon"></i>
                         </div>
                         
                         <div class="form-group">
                             <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" placeholder="(00) 00000-0000" maxlength="15" required>
+                            <input type="tel" id="phone" placeholder="(00) 00000-0000" maxlength="15">
                             <i class="fas fa-phone input-icon"></i>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="password">Senha</label>
-                            <input type="password" id="password" placeholder="Crie uma senha" maxlength="6" minlength="6" required>
+                            <input type="password" id="password" placeholder="Crie uma senha" minlength="6" required>
                             <i class="fas fa-lock input-icon"></i>
                             <button type="button" class="toggle-password" aria-label="Mostrar senha">
                                 <i class="fas fa-eye"></i>
@@ -106,7 +106,7 @@
                         
                         <div class="form-group">
                             <label for="confirm-password">Confirmar senha</label>
-                            <input type="password" id="confirm-password" placeholder="Repita sua senha" maxlength="6" minlength="6" required>
+                            <input type="password" id="confirm-password" placeholder="Repita sua senha" minlength="6" required>
                             <i class="fas fa-lock input-icon"></i>
                             <button type="button" class="toggle-password" aria-label="Mostrar senha">
                                 <i class="fas fa-eye"></i>
@@ -118,7 +118,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="cep">CEP</label>
-                            <input type="text" id="cep" placeholder="00000-000" maxlength="9" required>
+                            <input type="text" id="cep" placeholder="00000-000" maxlength="9">
                             <i class="fas fa-map-pin input-icon"></i>
                         </div>
                         
@@ -135,12 +135,12 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Endereço</label>
-                        <input type="text" id="address" placeholder="Rua, bairro, cidade/UF" required>
+                        <input type="text" id="address" placeholder="Rua, bairro, cidade/UF">
                         <i class="fas fa-map-marker-alt input-icon"></i>
                     </div>
                     <div class="form-group">
                         <label for="address-number">Complemento</label>
-                        <input type="text" id="address-number" placeholder="Número da casa/apto" required>
+                        <input type="text" id="address-number" placeholder="Número da casa/apto">
                         <i class="fas fa-home input-icon"></i>
                     </div>
                     
@@ -458,19 +458,49 @@ function showToast(message, type = 'info', duration = 3000) {
         return;
     }
 
+    // Validação adicional dos campos obrigatórios
+    if (!document.getElementById("name").value.trim()) {
+        showToast("O nome é obrigatório!", "error");
+        return;
+    }
+
+    if (!document.getElementById("email").value.trim()) {
+        showToast("O e-mail é obrigatório!", "error");
+        return;
+    }
+
+    if (!document.getElementById("user-type").value) {
+        showToast("Selecione o tipo de usuário!", "error");
+        return;
+    }
+
     // Coletar todos os dados do formulário
     const userData = {
-        nome: document.getElementById("name").value,
-        nomeMaterno: document.getElementById("mother-name").value,
-        email: document.getElementById("email").value,
-        cpf: document.getElementById("cpf").value,
-        telefone: document.getElementById("phone").value,
+        nome: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
         senha: password,
-        endereco: document.getElementById("address").value,
-        complemento: document.getElementById("address-number").value,
-        cep: document.getElementById("cep").value,
-        tipoUsuario: document.getElementById("user-type").value
+        tipoUsuario: document.getElementById("user-type").value,
+        terms: document.getElementById("terms").checked
     };
+
+    // Adicionar campos opcionais se preenchidos
+    const nomeMaterno = document.getElementById("mother-name").value.trim();
+    if (nomeMaterno) userData.nomeMaterno = nomeMaterno;
+
+    const cpf = document.getElementById("cpf").value.trim();
+    if (cpf) userData.cpf = cpf;
+
+    const telefone = document.getElementById("phone").value.trim();
+    if (telefone) userData.telefone = telefone;
+
+    const address = document.getElementById("address").value.trim();
+    if (address) userData.address = address;
+
+    const addressNumber = document.getElementById("address-number").value.trim();
+    if (addressNumber) userData["address-number"] = addressNumber;
+
+    const cep = document.getElementById("cep").value.trim();
+    if (cep) userData.cep = cep;
 
     // Desabilita o botão de submit durante o processamento
     const submitBtn = document.querySelector('.btn-register-submit');
@@ -484,7 +514,9 @@ function showToast(message, type = 'info', duration = 3000) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
+            mode: 'cors',
             body: JSON.stringify(userData)
         });
 

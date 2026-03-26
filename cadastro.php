@@ -1,43 +1,21 @@
 <?php
+declare(strict_types=1);
 /**
  * Arquivo para processar cadastro de novos usuários
  * Valida email único e armazena senha com hash seguro
  */
 
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
-
-// Inicia sessão
-session_start();
-
-// Verifica se a requisição é POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode([
-        'sucesso' => false,
-        'mensagem' => 'Método não permitido'
-    ]);
-    exit;
-}
+require_once 'api_bootstrap.php';
+initApiHeaders(['POST']);
+startSecureSession();
+requireMethod('POST');
 
 // Inclui arquivo de conexão
 require_once 'conexao.php';
 
 try {
     // Recebe dados do formulário
-    $dados = json_decode(file_get_contents('php://input'), true);
-    
-    // Verifica se o JSON foi decodificado corretamente
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        http_response_code(400);
-        echo json_encode([
-            'sucesso' => false,
-            'mensagem' => 'Erro ao processar dados JSON: ' . json_last_error_msg()
-        ]);
-        exit;
-    }
+    $dados = getJsonInput();
     
     // Validação dos campos obrigatórios
     $camposObrigatorios = ['nome', 'email', 'senha'];
@@ -195,8 +173,8 @@ try {
         $_SESSION['usuario_nome'] = $nome;
         $_SESSION['usuario_tipo'] = $tipoUsuario;
         
-        http_response_code(201);
-        echo json_encode([
+        session_regenerate_id(true);
+        sendJson([
             'sucesso' => true,
             'mensagem' => 'Cadastro realizado com sucesso!',
             'usuario' => [
@@ -204,24 +182,22 @@ try {
                 'nome' => $nome,
                 'email' => $email
             ]
-        ]);
+        ], 201);
     } else {
         throw new Exception('Erro ao inserir usuário no banco de dados');
     }
     
 } catch (PDOException $e) {
     error_log("Erro no cadastro: " . $e->getMessage());
-    http_response_code(500);
-    echo json_encode([
+    sendJson([
         'sucesso' => false,
         'mensagem' => 'Erro interno do servidor. Tente novamente mais tarde.'
-    ]);
+    ], 500);
 } catch (Exception $e) {
     error_log("Erro no cadastro: " . $e->getMessage());
-    http_response_code(500);
-    echo json_encode([
+    sendJson([
         'sucesso' => false,
-        'mensagem' => $e->getMessage()
-    ]);
+        'mensagem' => 'Erro interno do servidor. Tente novamente mais tarde.'
+    ], 500);
 }
 ?>

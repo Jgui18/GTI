@@ -1,43 +1,22 @@
 <?php
+declare(strict_types=1);
 /**
  * Arquivo para processar pagamento de planos
  * Armazena informações do pagamento na tabela pagamentos
  */
 
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
-
-// Inicia sessão
-session_start();
-
-// Verifica se a requisição é POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode([
-        'sucesso' => false,
-        'mensagem' => 'Método não permitido'
-    ]);
-    exit;
-}
-
-// Verifica se o usuário está logado
-if (!isset($_SESSION['usuario_id'])) {
-    http_response_code(401);
-    echo json_encode([
-        'sucesso' => false,
-        'mensagem' => 'Usuário não autenticado. Faça login para continuar.'
-    ]);
-    exit;
-}
+require_once 'api_bootstrap.php';
+initApiHeaders(['POST']);
+startSecureSession();
+requireMethod('POST');
+requireAuth();
 
 // Inclui arquivo de conexão
 require_once 'conexao.php';
 
 try {
     // Recebe dados do formulário
-    $dados = json_decode(file_get_contents('php://input'), true);
+    $dados = getJsonInput();
     
     // Validação dos campos obrigatórios
     if (empty($dados['plano']) || empty($dados['metodo_pagamento'])) {
@@ -87,7 +66,7 @@ try {
     
     // Sanitização dos dados
     $idUsuario = $_SESSION['usuario_id'];
-    $nomeCompleto = filter_var(trim($dados['full-name']), FILTER_SANITIZE_STRING);
+    $nomeCompleto = trim(strip_tags((string)$dados['full-name']));
     $cpf = preg_replace('/[^0-9]/', '', trim($dados['cpf'])); // Remove formatação
     $email = filter_var(trim($dados['email']), FILTER_SANITIZE_EMAIL);
     $telefone = preg_replace('/[^0-9]/', '', trim($dados['phone'])); // Remove formatação
@@ -124,7 +103,7 @@ try {
         // Armazena apenas os últimos 4 dígitos por segurança
         $numeroCartaoCompleto = preg_replace('/[^0-9]/', '', $dados['card-number']);
         $numeroCartao = substr($numeroCartaoCompleto, -4);
-        $nomeCartao = filter_var(trim($dados['card-name']), FILTER_SANITIZE_STRING);
+        $nomeCartao = trim(strip_tags((string)$dados['card-name']));
         $validadeCartao = trim($dados['card-expiry']);
         $parcelamento = isset($dados['card-installments']) ? intval($dados['card-installments']) : 1;
     }
@@ -166,35 +145,31 @@ try {
     if ($resultado) {
         $idPagamento = $pdo->lastInsertId();
         
-        http_response_code(200);
-        echo json_encode([
+        sendJson([
             'sucesso' => true,
             'mensagem' => 'Pagamento processado com sucesso!',
             'id_pagamento' => $idPagamento,
             'plano' => $plano,
             'valor' => $valor
-        ]);
+        ], 200);
     } else {
-        http_response_code(500);
-        echo json_encode([
+        sendJson([
             'sucesso' => false,
             'mensagem' => 'Erro ao processar pagamento'
-        ]);
+        ], 500);
     }
     
 } catch (PDOException $e) {
     error_log("Erro no pagamento: " . $e->getMessage());
-    http_response_code(500);
-    echo json_encode([
+    sendJson([
         'sucesso' => false,
         'mensagem' => 'Erro interno do servidor. Tente novamente mais tarde.'
-    ]);
+    ], 500);
 } catch (Exception $e) {
     error_log("Erro no pagamento: " . $e->getMessage());
-    http_response_code(500);
-    echo json_encode([
+    sendJson([
         'sucesso' => false,
-        'mensagem' => $e->getMessage()
-    ]);
+        'mensagem' => 'Erro interno do servidor. Tente novamente mais tarde.'
+    ], 500);
 }
 ?>

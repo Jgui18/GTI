@@ -1,29 +1,17 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
+declare(strict_types=1);
 
-session_start();
-if (!isset($_SESSION['usuario_id'])) {
-    http_response_code(401);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Não autenticado']);
-    exit;
-}
-
+require_once 'api_bootstrap.php';
 require_once 'conexao.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Método não permitido']);
-    exit;
-}
+initApiHeaders(['POST']);
+startSecureSession();
+requireMethod('POST');
+requireAdmin();
 
-$dados = json_decode(file_get_contents('php://input'), true);
+$dados = getJsonInput();
 if (empty($dados['id_pagamento'])) {
-    http_response_code(400);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Campo id_pagamento é obrigatório']);
-    exit;
+    sendJson(['sucesso' => false, 'mensagem' => 'Campo id_pagamento é obrigatório'], 400);
 }
 
 $id = (int)$dados['id_pagamento'];
@@ -39,18 +27,14 @@ foreach ($allowed as $f) {
 }
 
 if (empty($fields)) {
-    http_response_code(400);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Nenhum campo para atualizar']);
-    exit;
+    sendJson(['sucesso' => false, 'mensagem' => 'Nenhum campo para atualizar'], 400);
 }
 
 // validação de email
 if (isset($params['email'])) {
     $email = filter_var(trim($params['email']), FILTER_SANITIZE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        http_response_code(400);
-        echo json_encode(['sucesso' => false, 'mensagem' => 'E-mail inválido']);
-        exit;
+        sendJson(['sucesso' => false, 'mensagem' => 'E-mail inválido'], 400);
     }
     $params['email'] = $email;
 }
@@ -62,11 +46,8 @@ try {
     $params['id_pagamento'] = $id;
     $stmt->execute($params);
 
-    echo json_encode(['sucesso' => true, 'mensagem' => 'Pagamento atualizado', 'rowsAffected' => $stmt->rowCount()]);
+    sendJson(['sucesso' => true, 'mensagem' => 'Pagamento atualizado', 'rowsAffected' => $stmt->rowCount()]);
 } catch (PDOException $e) {
     error_log('Erro update_pagamento: ' . $e->getMessage());
-    http_response_code(500);
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro interno ao atualizar pagamento']);
+    sendJson(['sucesso' => false, 'mensagem' => 'Erro interno ao atualizar pagamento'], 500);
 }
-
-?>

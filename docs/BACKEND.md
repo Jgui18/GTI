@@ -14,6 +14,8 @@ Documentação da implementação de cadastro, login e endpoints PHP com MySQL.
 | `processar_pagamento.php` | Processamento de pagamentos |
 | `update_usuario.php`, `update_pagamento.php`, `update_cacamba.php` | Updates |
 | `delete_usuario.php`, `delete_pagamento.php`, `delete_cacamba.php` | Deletes |
+| `api_bootstrap.php` | Funções utilitárias de segurança para API |
+| `api/usuarios.php` | Endpoint de listagem de usuários (admin) |
 
 O banco de dados é criado e populado pelo arquivo `bd.sql` (banco `gti_bd`).
 
@@ -68,13 +70,26 @@ Destrói a sessão do usuário.
 
 ---
 
+### GET `/api/usuarios.php`
+
+Lista usuários cadastrados para painel administrativo.
+
+**Regras de acesso:**
+- Necessário estar autenticado
+- Necessário perfil `admin`
+
+---
+
 ## Segurança
 
 - **Hash de senhas:** `password_hash()` com bcrypt
 - **Prepared statements:** prevenção de SQL Injection
 - **Validação de e-mail** no backend
-- **Sessões PHP** para autenticação
+- **Sessões PHP endurecidas** (`HttpOnly`, `SameSite=Lax`, `session.use_strict_mode`)
 - **Sanitização** dos dados de entrada
+- **`session_regenerate_id(true)`** em login/cadastro
+- **Rehash automático de senha** no login quando necessário
+- **Autorização por perfil** (`admin`) para endpoints de update/delete e listagem de usuários
 
 ---
 

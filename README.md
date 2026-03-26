@@ -24,6 +24,8 @@ Com uma abordagem que une tecnologia e sustentabilidade, a GTI oferece planos de
 - **Área empresarial** para solicitações específicas
 - **Dark mode** e ajuste de fonte
 - **Layout responsivo**
+- **API de usuários** para administração (`GET /api/usuarios.php`)
+- **Autorização por perfil** para endpoints administrativos
 
 ---
 
@@ -97,6 +99,14 @@ GTI/
 ## Documentação
 
 - **[docs/BACKEND.md](docs/BACKEND.md)** — Endpoints da API, autenticação, segurança e exemplos de uso
+
+## Segurança aplicada
+
+- Senhas com `password_hash()` e login com `password_verify()`
+- Rehash automático de senha quando necessário (`password_needs_rehash()`)
+- Sessões PHP endurecidas (`HttpOnly`, `SameSite=Lax`, `session.use_strict_mode`)
+- Regeneração de sessão no login/cadastro (`session_regenerate_id(true)`)
+- Operações de update/delete protegidas para perfil `admin`
 
 ---
 
